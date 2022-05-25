@@ -24,17 +24,22 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     EditText txtID, txtEstado, txtComida;
-    Button btnEstadistica;
+    Button btnEstadistica, btnComer, btnBaño;
+    int contadorComidas;
+    String estado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        contadorComidas = 1;
 
         txtID = findViewById(R.id.txtID);
         txtEstado = findViewById(R.id.txtEstado);
         txtComida = findViewById(R.id.txtComidas);
         btnEstadistica = findViewById(R.id.btnEstadistica);
+        btnComer = findViewById(R.id.btnComer);
+        btnBaño = findViewById(R.id.btnBaño);
 
         btnEstadistica.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +48,59 @@ public class MainActivity extends AppCompatActivity {
                 enviarWS(txtComida.getText().toString(), txtEstado.getText().toString(), txtID.getText().toString());
             }
         });
+
+        btnComer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contadorComidas++;
+                txtComida.setText("Número de comidas: "+Integer.toString(contadorComidas));
+                if(contadorComidas >= 0 && contadorComidas <= 3) {
+                    estado = "Tamahochi débil";
+                    txtEstado.setText(estado);
+                }else if(contadorComidas >= 4 && contadorComidas <= 6) {
+                    estado = "Tamagochi hambriento";
+                    txtEstado.setText(estado);
+                }else if (contadorComidas >= 7 && contadorComidas <= 9){
+                    estado = "Tamahochi estable";
+                    txtEstado.setText(estado);
+                }else if (contadorComidas >= 10) {
+                    estado = "Tamahochi Exelente";
+                    txtEstado.setText(estado);
+                }else {
+                    estado = "Tamahochi Muerto";
+                    txtEstado.setText(estado);
+                }
+
+            }
+        });
+
+
+        btnBaño.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    contadorComidas--;
+                    txtComida.setText("Número de comidas: "+Integer.toString(contadorComidas));
+                    if(contadorComidas >= 0 && contadorComidas <= 3) {
+                        estado = "Tamahochi débil";
+                        txtEstado.setText(estado);
+                    }else if(contadorComidas >= 4 && contadorComidas <= 6) {
+                        estado = "Tamagochi hambriento";
+                        txtEstado.setText(estado);
+                    }else if (contadorComidas >= 7 && contadorComidas <= 9){
+                        estado = "Tamahochi estable";
+                        txtEstado.setText(estado);
+                    }else if (contadorComidas >= 10) {
+                        estado = "Tamahochi Exelente";
+                        txtEstado.setText(estado);
+                    }else {
+                        estado = "Tamahochi Muerto";
+                        txtEstado.setText(estado);
+                    }
+            }
+        });
+        txtComida.setText(Integer.toString(contadorComidas));
+        txtEstado.setText(estado);
+
 
     }
 
@@ -112,4 +170,6 @@ public class MainActivity extends AppCompatActivity {
                 ;
         Volley.newRequestQueue(this).add(postRequest);
     }
+
+
 }
