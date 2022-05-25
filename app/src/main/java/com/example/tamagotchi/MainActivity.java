@@ -36,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         txtID = findViewById(R.id.txtID);
         txtEstado = findViewById(R.id.txtEstado);
+        txtEstado.setEnabled(false);
         txtComida = findViewById(R.id.txtComidas);
+        txtComida.setEnabled(false);
         btnEstadistica = findViewById(R.id.btnEstadistica);
         btnComer = findViewById(R.id.btnComer);
         btnBaño = findViewById(R.id.btnBaño);
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     estado = "Tamahochi Muerto";
                     txtEstado.setText(estado);
+                    btnBaño.setEnabled(false);
+                    btnComer.setEnabled(false);
                 }
 
             }
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         estado = "Tamahochi Muerto";
                         txtEstado.setText(estado);
+                        btnBaño.setEnabled(false);
+                        btnComer.setEnabled(false);
                     }
             }
         });
